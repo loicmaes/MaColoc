@@ -21,8 +21,13 @@ export default defineNuxtConfig({
     },
   },
   googleFonts: {
+    download: false,
+    useStyleSheet: true,
     families: {
-      Poppins: true,
+      Montserrat: {
+        wght: "100..900",
+        ital: "100..900",
+      },
     },
   },
   i18n: {
