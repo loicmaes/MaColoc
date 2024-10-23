@@ -27,7 +27,7 @@ export default defineNuxtConfig({
   },
   i18n: {
     vueI18n: "i18n.config.ts",
-    locales: ["fr"],
+    locales: ["fr", "en"],
     defaultLocale: "fr",
   },
   tailwindcss: {
