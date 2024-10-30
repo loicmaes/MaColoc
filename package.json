@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "prisma": {
+    "schema": "server/database/schema.prisma"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -18,6 +21,7 @@
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/i18n": "^8.5.5",
     "@nuxtjs/tailwindcss": "^6.12.2",
+    "@prisma/client": "^5.21.1",
     "@vee-validate/zod": "^4.14.3",
     "@vueuse/core": "^11.1.0",
     "class-variance-authority": "^0.7.0",
