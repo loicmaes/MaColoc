@@ -1,0 +1,70 @@
+// ENUMS
+Enum Animal {
+  dog
+  cat
+  rabbit
+  other
+}
+
+// USER
+Enum MaritalStatus {
+  single
+  relationship
+}
+
+Enum SubscriptionPlan {
+  free
+  premium
+}
+
+Table User {
+  uid string [primary key]
+
+  email string [unique, not null]
+  password string [not null]
+
+  verified boolean [default: false]
+  subscriptionPlan SubscriptionPlan [default: "free"]
+
+  createdAt datetime [not null]
+  updatedAt datetime [not null]
+}
+
+Table UserInfo {
+  userUid string [primary key]
+
+  firstName string [not null]
+  lastName string [not null]
+
+  avatarUrl string
+
+  updatedAt datetime [not null]
+}
+
+Table UserPreferences {
+  userUid string [primary key]
+
+  openToFriendRequests boolean [default: true]
+
+  // Mail notification
+  promotionEmails boolean [default: false]
+  newMessageEmails boolean [default: true]
+  newFriendRequestEmails boolean [default: true]
+
+  updatedAt datetime [not null]
+}
+
+Table VerificationCode {
+  id number [primary key]
+  userUid string [not null]
+
+  code string [not null]
+
+  createdAt datetime [not null]
+  expiresAt datetime [not null]
+  usedAt datetime
+}
+
+Ref: UserInfo.userUid - User.uid
+Ref: UserPreferences.userUid - User.uid
+Ref: VerificationCode.userUid - User.uid
