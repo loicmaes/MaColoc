@@ -1,7 +1,7 @@
 import type { HttpRequest } from "~/types/http";
 
-const k_token = "token";
-const k_user = "user";
+export const k_token = "token";
+export const k_user = "user";
 
 export function registerAuthCookies(event: HttpRequest, payload: { token: string; userUid: string }) {
   const options = { path: "/", httpOnly: true, secure: false };
