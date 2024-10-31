@@ -39,6 +39,7 @@ model User {
   data              UserInfo?
   preferences       UserPreference?
   verificationCodes VerificationCode[]
+  authSessions      AuthSession[]
 
   @@map("users")
 }
@@ -79,4 +80,17 @@ model VerificationCode {
   user User @relation(fields: [userUid], references: [uid], onDelete: Cascade)
 
   @@map("verificationCodes")
+}
+
+model AuthSession {
+  token     String   @default(uuid())
+  userUid   String
+  revoked   Boolean  @default(false)
+  issuedAt  DateTime @default(now())
+  expiresAt DateTime
+
+  user User @relation(fields: [userUid], references: [uid], onDelete: Cascade)
+
+  @@id([token, userUid])
+  @@map("authSessions")
 }
