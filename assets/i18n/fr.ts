@@ -2,10 +2,26 @@ export default {
   btn: {
     back: "Retour",
   },
+  toast: {
+    internalError: {
+      title: "Oups 💢",
+      description: "Une erreur interne est survenue, ré-essaye plus tard.",
+    },
+  },
   auth: {
     btn: {
       login: "Rejoindre",
       goToDashboard: "Ouvrir l'application",
+    },
+    toast: {
+      conflict: {
+        title: "Un problème est survenu 💢",
+        description: "L'adresse e-mail ({email}) est déjà utilisée !",
+      },
+      notFound: {
+        title: "Oups 💢",
+        description: "Les informations de connexions ne correspondent pas !",
+      },
     },
     register: {
       title: "Inscription",
@@ -20,6 +36,10 @@ export default {
       action: "Créer mon compte",
       actionLoading: "Création de ton compte",
       link: "J'ai déjà un compte !",
+      toast: {
+        title: "Bienvenue {firstName} 🎉",
+        description: "Merci d'avoir rejoins nos utilisateurs. Un lien de confirmation t'as été envoyé par e-mail.",
+      },
     },
     login: {
       title: "Connexion",
@@ -30,6 +50,10 @@ export default {
       action: "Je me connecte",
       actionLoading: "Connexion en cours",
       link: "Je n'ai pas de compte !",
+      toast: {
+        title: "Bon retour parmi nous 🎉",
+        description: "Heureux de te revoir {firstName} ! Prêt à continuer à gérer ta colocation ?",
+      },
     },
   },
 };
