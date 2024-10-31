@@ -23,8 +23,7 @@ const { handleSubmit } = useForm({
 });
 const submit = handleSubmit(async (values) => {
   loading.value = true;
-  console.table(values);
-  await sendLogInRequest();
+  await sendLogInRequest(t, values);
   loading.value = false;
 });
 </script>
