@@ -1,0 +1,12 @@
+// AUTH
+Table AuthSession {
+  token string [primary key]
+  userUid string [primary key]
+
+  revoked boolean [default: false]
+
+  issuedAt datetime [not null]
+  expiresAt datetime [not null]
+}
+
+Ref: User.uid < AuthSession.userUid
