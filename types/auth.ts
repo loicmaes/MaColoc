@@ -5,3 +5,8 @@ export interface IAuthSession {
   issuedAt: Date;
   expiresAt: Date;
 }
+
+export interface IAuthLoginBody {
+  email: string;
+  password: string;
+}
