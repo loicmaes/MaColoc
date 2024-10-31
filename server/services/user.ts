@@ -1,3 +1,4 @@
+import argon2 from "argon2";
 import type { HttpRequest } from "~/types/http";
 import { error, HttpCode } from "~/types/http";
 import type { ICreateUserBody } from "~/types/user";
@@ -7,7 +8,10 @@ import { DatabaseConflictError } from "~/types/errors";
 
 export async function createUserAccount(event: HttpRequest, payload: ICreateUserBody) {
   try {
-    const user = await userRepository.create(payload);
+    const user = await userRepository.create({
+      ...payload,
+      password: await argon2.hash(payload.password),
+    });
     const code = await verificationCodeRepository.create(user.uid);
 
     console.log(code.code);

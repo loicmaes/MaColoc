@@ -16,7 +16,7 @@ export async function getUser(uid: string): Promise<IUser> {
   if (!user) throw new NotFoundError();
   return user as IUser;
 }
-export async function getUserByEmail(email: string): Promise<IUser> {
+export async function getUserByEmail<T>(email: string): Promise<T> {
   const user = await prisma.user.findUnique({
     where: {
       email,
@@ -27,7 +27,7 @@ export async function getUserByEmail(email: string): Promise<IUser> {
     },
   });
   if (!user) throw new NotFoundError();
-  return user as IUser;
+  return user as T;
 }
 
 export async function create(payload: ICreateUserBody): Promise<IUser> {
