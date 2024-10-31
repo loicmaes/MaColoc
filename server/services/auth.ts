@@ -1,9 +1,9 @@
 import argon2 from "argon2";
 import type { IInternalUser } from "~/types/user";
 import type { IAuthLoginBody } from "~/types/auth";
-import { NotFoundError } from "~/types/errors";
-import type { HttpRequest } from "~/types/http";
-import { error, HttpCode } from "~/types/http";
+import { NotFoundError } from "~/types/generics/errors";
+import type { HttpRequest } from "~/types/generics/http";
+import { error, HttpCode } from "~/types/generics/http";
 import * as userRepository from "~/server/database/repositories/user";
 import * as authRepository from "~/server/database/repositories/auth";
 import { readAuthCookies, registerAuthCookies } from "~/server/services/cookies";

@@ -1,4 +1,4 @@
-import type { SubscriptionPlan } from "~/types/enums";
+import type { SubscriptionPlan } from "~/types/generics/enums";
 
 export interface IInternalUser {
   uid: string;

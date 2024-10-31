@@ -1,4 +1,4 @@
-import type { HttpRequest } from "~/types/http";
+import type { HttpRequest } from "~/types/generics/http";
 
 export const k_token = "token";
 export const k_user = "user";

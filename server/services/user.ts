@@ -1,10 +1,10 @@
 import argon2 from "argon2";
-import type { HttpRequest } from "~/types/http";
-import { error, HttpCode } from "~/types/http";
+import type { HttpRequest } from "~/types/generics/http";
+import { error, HttpCode } from "~/types/generics/http";
 import type { ICreateUserBody } from "~/types/user";
 import * as userRepository from "~/server/database/repositories/user";
 import * as verificationCodeRepository from "~/server/database/repositories/verificationCode";
-import { DatabaseConflictError } from "~/types/errors";
+import { DatabaseConflictError } from "~/types/generics/errors";
 
 export async function createUserAccount(event: HttpRequest, payload: ICreateUserBody) {
   try {

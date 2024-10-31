@@ -1,7 +1,7 @@
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/binary";
 import type { ICreateUserBody, IUser } from "~/types/user";
 import prisma from "~/server/database";
-import { DatabaseConflictError, NotFoundError } from "~/types/errors";
+import { DatabaseConflictError, NotFoundError } from "~/types/generics/errors";
 
 export async function getUser(uid: string): Promise<IUser> {
   const user = await prisma.user.findUnique({

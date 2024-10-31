@@ -1,10 +1,10 @@
 import type { FetchError } from "ofetch";
 import type { ICreateUserBody, IUser } from "~/types/user";
 import { useToast } from "~/components/ui/toast";
-import type { InternalizationTool } from "~/types/frontSpecific";
+import type { InternalizationTool } from "~/types/generics/frontSpecific";
 import type { IAuthLoginBody } from "~/types/auth";
 import { k_token } from "~/server/services/cookies";
-import { HttpCode } from "~/types/http";
+import { HttpCode } from "~/types/generics/http";
 
 export const useUser = () => useState<IUser | null>("user", () => null);
 const useAuthCookie = () => useCookie(k_token);
