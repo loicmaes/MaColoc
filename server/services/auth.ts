@@ -6,7 +6,7 @@ import type { HttpRequest } from "~/types/http";
 import { error, HttpCode } from "~/types/http";
 import * as userRepository from "~/server/database/repositories/user";
 import * as authRepository from "~/server/database/repositories/auth";
-import { registerAuthCookies } from "~/server/services/cookies";
+import { readAuthCookies, registerAuthCookies } from "~/server/services/cookies";
 
 export async function loginUser(event: HttpRequest, payload: IAuthLoginBody) {
   try {
@@ -28,4 +28,18 @@ export async function loginUser(event: HttpRequest, payload: IAuthLoginBody) {
     });
     return error(event);
   }
+}
+export async function recoverSessionUser(event: HttpRequest) {
+  const { token, userUid } = readAuthCookies(event);
+  if (!token || !userUid) return error(event, {
+    code: HttpCode.BadRequest,
+    message: "Session can't be found!",
+  });
+
+  if (!await authRepository.isValid(token, userUid)) return error(event, {
+    code: HttpCode.Unauthorized,
+    message: "Invalid session provided! Maybe expired!",
+  });
+
+  return await userRepository.getUser(userUid);
 }
