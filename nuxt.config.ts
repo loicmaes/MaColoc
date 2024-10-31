@@ -7,8 +7,18 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "shadcn-nuxt",
     "@nuxtjs/google-fonts",
+    "nuxt-mailer",
+    "nuxt-scheduler",
   ],
   devtools: { enabled: true },
+  runtimeConfig: {
+    mailerHost: "",
+    mailerPort: "",
+    mailerUser: "",
+    mailerPass: "",
+    mailerFromAddress: "",
+    mailerFromName: "",
+  },
   compatibilityDate: "2024-04-03",
   eslint: {
     checker: true,
@@ -21,8 +31,6 @@ export default defineNuxtConfig({
     },
   },
   googleFonts: {
-    download: false,
-    useStyleSheet: true,
     families: {
       Montserrat: {
         wght: "100..900",
