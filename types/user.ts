@@ -38,8 +38,12 @@ export interface ICreateUserBody {
   email: string;
   password: string;
   data: ICreateUserInfo;
+  preferences: ICreateUserPreferences;
 }
 export interface ICreateUserInfo {
   firstName: string;
   lastName: string;
+}
+export interface ICreateUserPreferences {
+  promotionEmails?: boolean;
 }

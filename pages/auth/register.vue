@@ -25,7 +25,7 @@ const schema = toTypedSchema(z.object({
 const { handleSubmit } = useForm({
   validationSchema: schema,
 });
-const submit = handleSubmit(async ({ firstName, lastName, email, password }) => {
+const submit = handleSubmit(async ({ firstName, lastName, email, password, promotions }) => {
   loading.value = true;
   await sendRegisterRequest(t, {
     email,
@@ -33,6 +33,9 @@ const submit = handleSubmit(async ({ firstName, lastName, email, password }) => 
     data: {
       firstName,
       lastName,
+    },
+    preferences: {
+      promotionEmails: promotions,
     },
   });
   loading.value = false;

@@ -41,7 +41,9 @@ export async function create(payload: ICreateUserBody): Promise<IUser> {
           },
         },
         preferences: {
-          create: {},
+          create: {
+            ...payload.preferences,
+          },
         },
       },
       include: {
