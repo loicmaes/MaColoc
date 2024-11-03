@@ -4,7 +4,9 @@ import { error, HttpCode } from "~/types/generics/http";
 import type { ICreateUserBody } from "~/types/user";
 import * as userRepository from "~/server/database/repositories/user";
 import * as verificationCodeRepository from "~/server/database/repositories/verificationCode";
+import * as mailService from "~/server/services/mail";
 import { DatabaseConflictError } from "~/types/generics/errors";
+import useUserAccountCreatedTemplate from "~/server/email/templates/auth/userAccountCreated";
 
 export async function createUserAccount(event: HttpRequest, payload: ICreateUserBody) {
   try {
@@ -14,8 +16,10 @@ export async function createUserAccount(event: HttpRequest, payload: ICreateUser
     });
     const code = await verificationCodeRepository.create(user.uid);
 
-    console.log(code.code);
-    // todo: send mail
+    mailService.send({
+      to: user.email,
+      template: useUserAccountCreatedTemplate(code.code),
+    }).catch(console.error);
 
     return user;
   }
