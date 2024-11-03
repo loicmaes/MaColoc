@@ -79,6 +79,7 @@ model VerificationCode {
 
   user User @relation(fields: [userUid], references: [uid], onDelete: Cascade)
 
+  @@unique([userUid, code])
   @@map("verificationCodes")
 }
 
