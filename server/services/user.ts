@@ -4,9 +4,11 @@ import { error, HttpCode } from "~/types/generics/http";
 import type { ICreateUserBody } from "~/types/user";
 import * as userRepository from "~/server/database/repositories/user";
 import * as verificationCodeRepository from "~/server/database/repositories/verificationCode";
+import * as authRepository from "~/server/database/repositories/auth";
 import * as mailService from "~/server/services/mail";
-import { DatabaseConflictError } from "~/types/generics/errors";
+import { DatabaseConflictError, NotFoundError } from "~/types/generics/errors";
 import useUserAccountCreatedTemplate from "~/server/email/templates/auth/userAccountCreated";
+import useUserAccountVerifiedTemplate from "~/server/email/templates/auth/userAccountVerified";
 import { registerAuthCookies } from "~/server/services/cookies";
 
 export async function createUserAccount(event: HttpRequest, payload: ICreateUserBody) {
@@ -28,6 +30,38 @@ export async function createUserAccount(event: HttpRequest, payload: ICreateUser
   }
   catch (e) {
     if (e instanceof DatabaseConflictError) return error(event, { code: HttpCode.Conflict, message: "Email already in use!" });
+    return error(event);
+  }
+}
+export async function verifyUserAccount(event: HttpRequest, userUid: string) {
+  try {
+    const code = getRouterParam(event, "code");
+
+    if (!code) return error(event, {
+      code: HttpCode.BadRequest,
+      message: "Verification code is missing!",
+    });
+
+    if (!await verificationCodeRepository.isValid(userUid, code)) return error(event, {
+      code: HttpCode.Unauthorized,
+      message: "Invalid verification provided, maybe expired!",
+    });
+
+    await verificationCodeRepository.use(userUid, code);
+    const user = await userRepository.verify(userUid);
+
+    mailService.send({
+      to: user.email,
+      template: useUserAccountVerifiedTemplate(),
+    }).catch(console.error);
+
+    return user;
+  }
+  catch (e) {
+    if (e instanceof NotFoundError) return error(event, {
+      code: HttpCode.NotFound,
+      message: "User or verification code not found!",
+    });
     return error(event);
   }
 }

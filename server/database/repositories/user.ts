@@ -30,6 +30,15 @@ export async function getUserByEmail<T>(email: string): Promise<T> {
   return user as T;
 }
 
+export async function isVerified(uid: string): Promise<boolean> {
+  return !!await prisma.user.findUnique({
+    where: {
+      uid,
+      verified: true,
+    },
+  });
+}
+
 export async function create(payload: ICreateUserBody): Promise<IUser> {
   try {
     return await prisma.user.create({
@@ -61,4 +70,15 @@ export async function create(payload: ICreateUserBody): Promise<IUser> {
         throw e;
     }
   }
+}
+
+export async function verify(uid: string): Promise<IUser> {
+  return prisma.user.update({
+    where: {
+      uid,
+    },
+    data: {
+      verified: true,
+    },
+  });
 }
