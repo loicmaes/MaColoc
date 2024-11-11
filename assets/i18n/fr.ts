@@ -1,6 +1,8 @@
 export default {
+  // global
   btn: {
     back: "Retour",
+    seeMyProfile: "Voir mon profil",
   },
   toast: {
     internalError: {
@@ -8,6 +10,10 @@ export default {
       description: "Une erreur interne est survenue, ré-essaye plus tard.",
     },
   },
+  labels: {
+    logOut: "Déconnexion",
+  },
+  // auth
   auth: {
     btn: {
       login: "Rejoindre",
@@ -55,5 +61,33 @@ export default {
         description: "Heureux de te revoir {firstName} ! Prêt à continuer à gérer ta colocation ?",
       },
     },
+  },
+  // app
+  settings: {
+    appearance: {
+      label: "Apparence",
+      theme: {
+        light: "Clair",
+        dark: "Sombre",
+      },
+    },
+    language: {
+      label: "Langue",
+      locales: {
+        fr: "Français",
+        en: "Anglais",
+      },
+    },
+    verification: {
+      notVerified: "Compte non vérifié",
+      action: "Vérifier mon compte",
+      form: {
+        title: "Vérification",
+        description: "La vérification du compte est là pour authentifier de la possession du mail entré à l'inscription. Une fois ton compte vérifier, tu pourras jouir de toute la puissance de l'application.",
+        label: "Code",
+      },
+    },
+  },
+  navigation: {
   },
 };

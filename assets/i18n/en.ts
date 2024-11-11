@@ -1,6 +1,8 @@
 export default {
+  // global
   btn: {
     back: "Back",
+    seeMyProfile: "See my profile",
   },
   toast: {
     internalError: {
@@ -8,6 +10,10 @@ export default {
       description: "An internal error occurred, retry later.",
     },
   },
+  labels: {
+    logOut: "Log Out",
+  },
+  // auth
   auth: {
     btn: {
       login: "Join",
@@ -55,5 +61,33 @@ export default {
         description: "Happy to see you again {firstName}! Ready to continue to manage your house sharing?",
       },
     },
+  },
+  // app
+  settings: {
+    appearance: {
+      label: "Appearance",
+      theme: {
+        light: "Light",
+        dark: "Dark",
+      },
+    },
+    language: {
+      label: "Language",
+      locales: {
+        fr: "French",
+        en: "English",
+      },
+    },
+    verification: {
+      notVerified: "Account not verified",
+      action: "Verify my account",
+      form: {
+        title: "Verification",
+        description: "Account verification is here to authenticate the ownership of the email entered during registration. Once your account is verified, you can enjoy the full power of the application.",
+        label: "Code",
+      },
+    },
+  },
+  navigation: {
   },
 };
