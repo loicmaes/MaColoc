@@ -11,6 +11,9 @@ export default defineNuxtConfig({
     "nuxt-scheduler",
   ],
   devtools: { enabled: true },
+  colorMode: {
+    classSuffix: "",
+  },
   runtimeConfig: {
     mailerHost: "",
     mailerPort: "",
@@ -18,6 +21,9 @@ export default defineNuxtConfig({
     mailerPass: "",
     mailerFromAddress: "",
     mailerFromName: "",
+    public: {
+      appUrl: "",
+    },
   },
   compatibilityDate: "2024-04-03",
   eslint: {
@@ -44,7 +50,7 @@ export default defineNuxtConfig({
     defaultLocale: "fr",
   },
   tailwindcss: {
-    cssPath: ["~/assets/css/tailwind.sass", { injectPosition: "first" }],
+    cssPath: ["~/assets/css/tailwind.css", { injectPosition: "first" }],
     configPath: "tailwind.config",
     exposeConfig: false,
     viewer: true,
