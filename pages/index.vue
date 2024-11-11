@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  layout: "showcase",
+});
+
 const switchLocale = useSwitchLocalePath();
 </script>
 
