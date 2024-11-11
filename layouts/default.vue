@@ -1,37 +1,24 @@
 <script setup lang="ts">
-const user = useUser();
+import UserMenu from "~/components/layouts/user/UserMenu.vue";
 </script>
 
 <template>
   <div
     data-layout="default"
-    class="w-full min-h-dvh"
+    class="w-full min-h-dvh flex"
   >
-    <header class="sticky top-0 flex items-center justify-between px-6 lg:px-20 py-4">
-      <NuxtLinkLocale
-        class="font-bold"
-        to="/"
-      >
-        Ma Coloc'
-      </NuxtLinkLocale>
+    <aside class="sticky top-0 h-dvh overflow-y-auto basis-1/5 border-r border-border">
+      <header class="h-16" />
+    </aside>
 
-      <Button
-        as-child
-      >
-        <NuxtLinkLocale
-          v-if="user"
-          to="/"
-        >
-          {{ $t("auth.btn.goToDashboard") }}
-        </NuxtLinkLocale>
-        <NuxtLinkLocale
-          v-else
-          to="/auth/login"
-        >
-          {{ $t("auth.btn.login") }}
-        </NuxtLinkLocale>
-      </Button>
-    </header>
-    <slot />
+    <main class="basis-4/5 flex flex-col">
+      <header class="sticky top-0 h-16 flex items-center justify-end px-4 border-b border-border">
+        <UserMenu />
+      </header>
+
+      <div class="p-4">
+        <slot />
+      </div>
+    </main>
   </div>
 </template>
