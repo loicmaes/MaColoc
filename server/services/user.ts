@@ -7,6 +7,7 @@ import * as verificationCodeRepository from "~/server/database/repositories/veri
 import * as mailService from "~/server/services/mail";
 import { DatabaseConflictError } from "~/types/generics/errors";
 import useUserAccountCreatedTemplate from "~/server/email/templates/auth/userAccountCreated";
+import { registerAuthCookies } from "~/server/services/cookies";
 
 export async function createUserAccount(event: HttpRequest, payload: ICreateUserBody) {
   try {
@@ -15,6 +16,8 @@ export async function createUserAccount(event: HttpRequest, payload: ICreateUser
       password: await argon2.hash(payload.password),
     });
     const code = await verificationCodeRepository.create(user.uid);
+    const session = await authRepository.create(user.uid);
+    registerAuthCookies(event, { token: session.token, userUid: session.userUid });
 
     mailService.send({
       to: user.email,
