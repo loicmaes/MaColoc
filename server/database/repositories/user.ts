@@ -1,5 +1,5 @@
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/binary";
-import type { ICreateUserBody, IUser } from "~/types/user";
+import type { ICreateUserBody, IInternalUser, IUser } from "~/types/user";
 import prisma from "~/server/database";
 import { DatabaseConflictError, NotFoundError } from "~/types/generics/errors";
 
@@ -14,7 +14,10 @@ export async function getUser(uid: string): Promise<IUser> {
     },
   });
   if (!user) throw new NotFoundError();
-  return user as IUser;
+
+  const _user = { ...user } as Partial<IInternalUser>;
+  delete _user.password;
+  return _user as IUser;
 }
 export async function getUserByEmail<T>(email: string): Promise<T> {
   const user = await prisma.user.findUnique({
@@ -27,6 +30,7 @@ export async function getUserByEmail<T>(email: string): Promise<T> {
     },
   });
   if (!user) throw new NotFoundError();
+
   return user as T;
 }
 
@@ -41,7 +45,7 @@ export async function isVerified(uid: string): Promise<boolean> {
 
 export async function create(payload: ICreateUserBody): Promise<IUser> {
   try {
-    return await prisma.user.create({
+    const user = await prisma.user.create({
       data: {
         ...payload,
         data: {
@@ -59,7 +63,10 @@ export async function create(payload: ICreateUserBody): Promise<IUser> {
         data: true,
         preferences: true,
       },
-    }) as IUser;
+    });
+    const _user = { ...user } as Partial<IInternalUser>;
+    delete _user.password;
+    return _user as IUser;
   }
   catch (e) {
     if (!(e instanceof PrismaClientKnownRequestError)) throw e;
@@ -73,12 +80,20 @@ export async function create(payload: ICreateUserBody): Promise<IUser> {
 }
 
 export async function verify(uid: string): Promise<IUser> {
-  return prisma.user.update({
+  const user = await prisma.user.update({
     where: {
       uid,
     },
     data: {
       verified: true,
     },
+    include: {
+      data: true,
+      preferences: true,
+    },
   });
+  const _user = { ...user } as Partial<IInternalUser>;
+
+  delete _user.password;
+  return _user as IUser;
 }
