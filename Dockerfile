@@ -4,7 +4,6 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install -g yarn
 RUN yarn install
 
 RUN npx prisma generate
