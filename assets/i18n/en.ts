@@ -85,6 +85,18 @@ export default {
         title: "Verification",
         description: "Account verification is here to authenticate the ownership of the email entered during registration. Once your account is verified, you can enjoy the full power of the application.",
         label: "Code",
+        actionLoading: "Verification in progress...",
+        requestNewCode: "Send a new code.",
+        toast: {
+          verified: {
+            title: "Congratulations 🎉",
+            description: "Your account has been verified! You can now fully enjoy the platform.",
+          },
+          unauthorized: {
+            title: "Oops 💢",
+            description: "The code you provided does not exist or is no longer valid. Remember, the code is only valid for 15 minutes!",
+          },
+        },
       },
     },
   },

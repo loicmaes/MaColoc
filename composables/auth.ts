@@ -41,13 +41,14 @@ export async function sendRegisterRequest(t: InternalizationTool, payload: ICrea
   const { toast } = useToast();
 
   try {
-    await $fetch("/api/user/register", {
+    const user = await $fetch<IUser>("/api/user/register", {
       method: "POST",
       body: payload,
     });
-    await navigateTo(useLocalePath()("/"));
+    useUser().value = user;
+    await navigateTo(useLocalePath()("/app"));
     toast({
-      title: t("auth.register.toast.title", { firstName: payload.data.firstName }),
+      title: t("auth.register.toast.title", { firstName: user.data?.firstName }),
       description: t("auth.register.toast.description"),
     });
   }
@@ -89,6 +90,40 @@ export async function sendLogInRequest(t: InternalizationTool, payload: IAuthLog
         return toast({
           title: t("auth.toast.notFound.title"),
           description: t("auth.toast.notFound.description"),
+          variant: "destructive",
+        });
+      default:
+        return toast({
+          title: t("toast.internalError.title"),
+          description: t("toast.internalError.description"),
+          variant: "destructive",
+        });
+    }
+  }
+}
+export async function sendVerificationRequest(t: InternalizationTool, code: string) {
+  const { toast } = useToast();
+
+  try {
+    const user = await $fetch<IUser>(`/api/user/validate/${code}`, {
+      method: "PUT",
+      headers: useRequestHeaders(["cookie"]),
+    });
+    console.table(user);
+    if (!user) return;
+    useUser().value = user;
+    toast({
+      title: t("settings.verification.form.toast.verified.title"),
+      description: t("settings.verification.form.toast.verified.description"),
+    });
+    return user;
+  }
+  catch (e) {
+    switch ((e as FetchError).statusCode) {
+      case HttpCode.Unauthorized:
+        return toast({
+          title: t("settings.verification.form.toast.unauthorized.title"),
+          description: t("settings.verification.form.toast.unauthorized.description"),
           variant: "destructive",
         });
       default:

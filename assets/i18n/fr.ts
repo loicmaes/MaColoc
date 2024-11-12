@@ -85,6 +85,18 @@ export default {
         title: "Vérification",
         description: "La vérification du compte est là pour authentifier de la possession du mail entré à l'inscription. Une fois ton compte vérifier, tu pourras jouir de toute la puissance de l'application.",
         label: "Code",
+        actionLoading: "Vérification en cours...",
+        requestNewCode: "Envoyer un nouveau code.",
+        toast: {
+          verified: {
+            title: "Félicitation 🎉",
+            description: "Ton compte a été vérifié ! Tu peux maintenant de jouir pleinement de la plateforme.",
+          },
+          unauthorized: {
+            title: "Oups 💢",
+            description: "Le code que tu as fourni n'existe pas ou n'est plus valide. N'oublie pas que le code n'est valable que 15 minutes !",
+          },
+        },
       },
     },
   },

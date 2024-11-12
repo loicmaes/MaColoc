@@ -1,13 +1,16 @@
 <script setup lang="ts">
+import { SystemRestart } from "@iconoir/vue";
 import { toTypedSchema } from "@vee-validate/zod";
 import { useForm } from "vee-validate";
 import * as z from "zod";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "~/components/ui/sheet";
 
+const { t } = useI18n();
+
 defineProps<{
   open: boolean;
 }>();
-defineEmits<{
+const emit = defineEmits<{
   "update:open": [boolean];
 }>();
 
@@ -17,7 +20,15 @@ const schema = toTypedSchema(z.object({
 const { handleSubmit } = useForm({
   validationSchema: schema,
 });
-const onSubmit = handleSubmit(async values => console.table(values));
+const loading = ref<boolean>(false);
+const onSubmit = handleSubmit(async ({ code }) => {
+  loading.value = true;
+  const value = await sendVerificationRequest(t, code);
+  loading.value = false;
+
+  if (!value) return;
+  emit("update:open", false);
+});
 </script>
 
 <template>
@@ -53,14 +64,17 @@ const onSubmit = handleSubmit(async values => console.table(values));
         <Button
           type="submit"
           class="self-end"
+          :disabled="loading"
         >
-          {{ $t("settings.verification.action") }}
+          <template v-if="loading">
+            <SystemRestart class="animate-spin" />
+            <span>{{ $t("settings.verification.form.actionLoading") }}</span>
+          </template>
+          <template v-else>
+            <span>{{ $t("settings.verification.action") }}</span>
+          </template>
         </Button>
       </form>
     </SheetContent>
   </Sheet>
 </template>
-
-<style scoped>
-
-</style>
