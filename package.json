@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "prisma": {
+    "schema": "server/database/schema.prisma"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -18,12 +21,16 @@
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/i18n": "^8.5.5",
     "@nuxtjs/tailwindcss": "^6.12.2",
+    "@prisma/client": "^5.21.1",
     "@vee-validate/zod": "^4.14.3",
     "@vueuse/core": "^11.1.0",
+    "argon2": "^0.41.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-vue-next": "^0.453.0",
     "nuxt": "^3.13.2",
+    "nuxt-mailer": "^0.11.0",
+    "nuxt-scheduler": "^0.1.9",
     "radix-vue": "^1.9.7",
     "shadcn-nuxt": "^0.10.4",
     "tailwind-merge": "^2.5.4",
@@ -41,7 +48,6 @@
   "devDependencies": {
     "@types/node": "^22.7.9",
     "eslint": "^9.13.0",
-    "sass": "^1.80.3",
     "typescript": "^5.6.3"
   }
 }

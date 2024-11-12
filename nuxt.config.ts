@@ -7,8 +7,24 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "shadcn-nuxt",
     "@nuxtjs/google-fonts",
+    "nuxt-mailer",
+    "nuxt-scheduler",
   ],
   devtools: { enabled: true },
+  colorMode: {
+    classSuffix: "",
+  },
+  runtimeConfig: {
+    mailerHost: "",
+    mailerPort: "",
+    mailerUser: "",
+    mailerPass: "",
+    mailerFromAddress: "",
+    mailerFromName: "",
+    public: {
+      appUrl: "",
+    },
+  },
   compatibilityDate: "2024-04-03",
   eslint: {
     checker: true,
@@ -21,8 +37,6 @@ export default defineNuxtConfig({
     },
   },
   googleFonts: {
-    download: false,
-    useStyleSheet: true,
     families: {
       Montserrat: {
         wght: "100..900",
@@ -36,7 +50,7 @@ export default defineNuxtConfig({
     defaultLocale: "fr",
   },
   tailwindcss: {
-    cssPath: ["~/assets/css/tailwind.sass", { injectPosition: "first" }],
+    cssPath: ["~/assets/css/tailwind.css", { injectPosition: "first" }],
     configPath: "tailwind.config",
     exposeConfig: false,
     viewer: true,
