@@ -9,21 +9,62 @@ datasource db {
 }
 
 // ENUMS
-enum Animal {
-  dog
-  cat
-  rabbit
-  other
-}
-
 enum MaritalStatus {
   signle
   relationship
 }
-
 enum SubscriptionPlan {
   free
   premium
+}
+enum Gender {
+  man
+  woman
+  other
+}
+enum Frequency {
+  regularly
+  socially
+  never
+}
+enum JobStatus {
+  permanent
+  fixedTerm
+  student
+  selfEmployed
+  unemployed
+}
+enum Diet {
+  vegetarian
+  vegan
+  flexitarian
+  omnivore
+  carnivore
+}
+enum DayMoment {
+  day
+  evening
+  night
+  weekend
+}
+enum HistoryStatus {
+  new
+  experienced
+}
+enum Language {
+  french
+  english
+  german
+  italian
+  spanish
+  portuguese
+  russian
+  polish
+  indian
+  chinese
+  japanese
+  arabic
+  algerian
 }
 
 // MODELS
@@ -40,22 +81,23 @@ model User {
   preferences       UserPreference?
   verificationCodes VerificationCode[]
   authSessions      AuthSession[]
+  rentalProfile     RentalProfile?
 
   @@map("users")
 }
-
 model UserInfo {
-  userUid   String   @id
+  userUid   String    @id
   firstName String
   lastName  String
   avatarUrl String?
-  updatedAt DateTime @updatedAt
+  birthdate DateTime?
+  gender    Gender?
+  updatedAt DateTime  @updatedAt
 
   user User @relation(fields: [userUid], references: [uid], onDelete: Cascade)
 
   @@map("userInfo")
 }
-
 model UserPreference {
   userUid                String   @id
   openToFriendRequests   Boolean  @default(true)
@@ -68,7 +110,6 @@ model UserPreference {
 
   @@map("userPreferences")
 }
-
 model VerificationCode {
   id        Int       @id @default(autoincrement())
   userUid   String
@@ -83,6 +124,7 @@ model VerificationCode {
   @@map("verificationCodes")
 }
 
+// AUTH
 model AuthSession {
   token     String   @default(uuid())
   userUid   String
@@ -94,4 +136,28 @@ model AuthSession {
 
   @@id([token, userUid])
   @@map("authSessions")
+}
+
+// RENTAL PROFILE
+model RentalProfile {
+  userUid       String        @id
+  animals       Boolean
+  smoker        Frequency
+  drinker       Frequency
+  maritalStatus MaritalStatus
+  jobStatus     JobStatus
+  monthlyIncome Decimal
+  diet          Diet
+  availability  DayMoment
+  driverLicense Boolean
+  car           Boolean
+  motorcycle    Boolean
+  rentHistory   HistoryStatus
+  languages     Language[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  user User @relation(fields: [userUid], references: [uid], onDelete: Cascade)
+
+  @@map("rentalProfiles")
 }
