@@ -11,11 +11,12 @@ export async function getUser(uid: string): Promise<IUser> {
     include: {
       data: true,
       preferences: true,
+      rentalProfile: true,
     },
   });
   if (!user) throw new NotFoundError();
 
-  const _user = { ...user } as Partial<IInternalUser>;
+  const _user = { ...user } as unknown as Partial<IInternalUser>;
   delete _user.password;
   return _user as IUser;
 }
@@ -27,6 +28,7 @@ export async function getUserByEmail<T>(email: string): Promise<T> {
     include: {
       data: true,
       preferences: true,
+      rentalProfile: true,
     },
   });
   if (!user) throw new NotFoundError();
@@ -62,9 +64,10 @@ export async function create(payload: ICreateUserBody): Promise<IUser> {
       include: {
         data: true,
         preferences: true,
+        rentalProfile: true,
       },
     });
-    const _user = { ...user } as Partial<IInternalUser>;
+    const _user = { ...user } as unknown as Partial<IInternalUser>;
     delete _user.password;
     return _user as IUser;
   }
@@ -90,9 +93,10 @@ export async function verify(uid: string): Promise<IUser> {
     include: {
       data: true,
       preferences: true,
+      rentalProfile: true,
     },
   });
-  const _user = { ...user } as Partial<IInternalUser>;
+  const _user = { ...user } as unknown as Partial<IInternalUser>;
 
   delete _user.password;
   return _user as IUser;
