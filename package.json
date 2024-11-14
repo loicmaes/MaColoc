@@ -21,7 +21,7 @@
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/i18n": "^8.5.5",
     "@nuxtjs/tailwindcss": "^6.12.2",
-    "@prisma/client": "^5.21.1",
+    "@prisma/client": "5.22.0",
     "@vee-validate/zod": "^4.14.3",
     "@vueuse/core": "^11.1.0",
     "argon2": "^0.41.1",
