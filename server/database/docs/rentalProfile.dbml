@@ -1,0 +1,72 @@
+// PUBLIC
+Enum MaritalStatus {
+  single
+  relationship
+}
+Enum Frequency {
+  regularly
+  socially
+  never
+}
+Enum JobStatus {
+  permanent
+  fixedTerm
+  student
+  selfEmployed
+  unemployed
+}
+Enum Diet {
+  vegetarian
+  vegan
+  flexitarian
+  omnivore
+  carnivore
+}
+Enum DayMoment {
+  day
+  evening
+  night
+  weekend
+}
+Enum HistoryStatus {
+  new
+  experienced
+}
+Enum Language {
+  french
+  english
+  german
+  italian
+  spanish
+  portuguese
+  russian
+  polish
+  indian
+  chinese
+  japanese
+  arabic
+  algerian
+}
+
+Table RentalProfile {
+  userUid string pk
+
+  animals boolean
+  smoker Frequency
+  drinker Frequency
+  maritalStatus MaritalStatus
+  jobStatus JobStatus
+  mensualRevenue number
+  diet Diet
+  availability DayMoment
+  driverLicense boolean
+  car boolean
+  motorcycle boolean
+  rentHistory HistoryStatus
+  languages Language [note: 'array of languages']
+
+  createdAt datetime [not null, default: `now()`]
+  updatedAt datetime [not null, default: `now()`]
+}
+
+Ref: User.uid - RentalProfile.userUid

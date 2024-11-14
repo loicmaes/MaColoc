@@ -1,20 +1,12 @@
-// ENUMS
-Enum Animal {
-  dog
-  cat
-  rabbit
-  other
-}
-
 // USER
-Enum MaritalStatus {
-  single
-  relationship
-}
-
 Enum SubscriptionPlan {
   free
   premium
+}
+Enum Gender {
+  man
+  woman
+  other
 }
 
 Table User {
@@ -26,8 +18,8 @@ Table User {
   verified boolean [default: false]
   subscriptionPlan SubscriptionPlan [default: "free"]
 
-  createdAt datetime [not null]
-  updatedAt datetime [not null]
+  createdAt datetime [not null, default: `now()`]
+  updatedAt datetime [not null, default: `now()`]
 }
 
 Table UserInfo {
@@ -38,7 +30,10 @@ Table UserInfo {
 
   avatarUrl string
 
-  updatedAt datetime [not null]
+  birthdate datetime
+  gender Gender
+
+  updatedAt datetime [not null, default: `now()`]
 }
 
 Table UserPreferences {
@@ -51,16 +46,15 @@ Table UserPreferences {
   newMessageEmails boolean [default: true]
   newFriendRequestEmails boolean [default: true]
 
-  updatedAt datetime [not null]
+  updatedAt datetime [not null, default: `now()`]
 }
 
 Table VerificationCode {
-  id number [primary key]
-  userUid string [not null]
+  userUid string pk [not null]
 
-  code string [not null]
+  code string pk [not null]
 
-  createdAt datetime [not null]
+  createdAt datetime [not null, default: `now()`]
   expiresAt datetime [not null]
   usedAt datetime
 }
