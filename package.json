@@ -23,7 +23,7 @@
     "@nuxtjs/tailwindcss": "^6.12.2",
     "@prisma/client": "5.22.0",
     "@vee-validate/zod": "^4.14.3",
-    "@vueuse/core": "^11.1.0",
+    "@vueuse/core": "^11.2.0",
     "argon2": "^0.41.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
