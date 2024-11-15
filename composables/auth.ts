@@ -78,7 +78,7 @@ export async function sendLogInRequest(t: InternalizationTool, payload: IAuthLog
       body: payload,
     });
     useUser().value = user;
-    await navigateTo(useLocalePath()("/")); // todo: update to redirect to panel
+    await navigateTo(useLocalePath()("/app"));
     toast({
       title: t("auth.login.toast.title"),
       description: t("auth.login.toast.description", { firstName: user.data?.firstName }),
