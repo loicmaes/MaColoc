@@ -32,4 +32,18 @@ export interface IRichRentalProfile extends IRentalProfile {
   user: IUser;
 }
 
-export type ICreateRentalProfile = Omit<Omit<Omit<IRentalProfile, "userUid">, "createdAt">, "updatedAt">;
+export interface ICreateRentalProfile {
+  animals: boolean;
+  smoker: TFrequency;
+  drinker: TFrequency;
+  maritalStatus: TMaritalStatus;
+  jobStatus: TJobStatus;
+  monthlyIncome: number;
+  diet: TDiet;
+  availability: TDayMoment;
+  driverLicense: boolean;
+  car: boolean;
+  motorcycle: boolean;
+  rentHistory: THistoryStatus;
+  languages: TLanguage[];
+}
