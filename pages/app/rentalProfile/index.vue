@@ -13,23 +13,24 @@ const user = useUser();
   >
     <template v-if="user.rentalProfile">
       <p class="italic">
+        <!-- TODO -->
         info to display later
       </p>
     </template>
     <template v-else>
       <div class="py-12 flex flex-col items-center gap-2 max-w-[35ch] mx-auto">
-        <h1 class="text-2xl text-center font-bold">
-          Vous n'avez pas de profil locataire!
+        <h1 class="text-2xl text-center font-bold text-pretty">
+          {{ t("rentalProfile.default.noProfile.title") }}
         </h1>
         <p class="text-center text-muted-foreground">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis dolores eos eum itaque praesentium quis quos, saepe similique. Blanditiis consequatur culpa esse fugit impedit, incidunt maiores molestiae saepe sit? Dignissimos eveniet id nulla quibusdam unde.
+          {{ t("rentalProfile.default.noProfile.caption") }}
         </p>
         <Button
           class="mt-6"
           as-child
         >
           <NuxtLinkLocale to="/app/rentalProfile/create">
-            Créer mon profil
+            {{ t("rentalProfile.default.noProfile.action") }}
           </NuxtLinkLocale>
         </Button>
       </div>

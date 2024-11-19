@@ -130,6 +130,13 @@ export default {
       title: "Create your tenant profile",
       description: "It's the core of the application and allows you to: manage a flatshare with another member, find a rental listing available for flatsharing, find a reliable flatmate, and more.",
     },
+    default: {
+      noProfile: {
+        title: "You don't have a tenant profile!",
+        caption: "Your tenant profile is your showcase on the platform! It will be useful for matchmaking, searching for listings, and simply for your social profile. Create your account in 5 minutes to access more features!",
+        action: "Create my profile",
+      },
+    },
     toast: {
       created: {
         title: "Congratulation 🎉",

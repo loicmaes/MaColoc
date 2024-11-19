@@ -130,6 +130,13 @@ export default {
       title: "Créer ton profil locataire",
       description: "Il est au coeur de l'application et te permet de : gérer une colocation avec un autre membre, trouver une annonce immobilière disponible en colocation, trouver un colocataire fiable, et j'en passe.",
     },
+    default: {
+      noProfile: {
+        title: "Tu n'as pas de profil locataire !",
+        caption: "Ton profil locataire est ta vitrine sur la plateforme ! Il te sera utile pour le match-making, pour la recherche d'annonces mais simplement pour ton profil social. Créer ton compte en 5 minutes pour accéder à plus de fonctionnalités !",
+        action: "Créer mon profil",
+      },
+    },
     toast: {
       created: {
         title: "Féliciation 🎉",
