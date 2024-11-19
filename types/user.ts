@@ -1,16 +1,18 @@
-import type { SubscriptionPlan } from "~/types/generics/enums";
+import type { TGender, TSubscriptionPlan } from "~/types/generics/enums";
+import type { IIncludedRentalProfile } from "~/types/rentalProfile";
 
 export interface IInternalUser {
   uid: string;
   email: string;
   password: string;
   verified: boolean;
-  subscriptionPlan: SubscriptionPlan;
+  subscriptionPlan: TSubscriptionPlan;
   createdAt: Date;
   updatedAt: Date;
 
   data?: IIncludedUserInfo;
   preferences?: IIncludedUserPreferences;
+  rentalProfile?: IIncludedRentalProfile;
 }
 export type IUser = Omit<IInternalUser, "password">;
 
@@ -19,6 +21,8 @@ export interface IUserInfo {
   firstName: string;
   lastName: string;
   avatarUrl?: string;
+  birthdate?: Date;
+  gender?: TGender;
   updatedAt: Date;
 }
 export type IIncludedUserInfo = Omit<IUserInfo, "userUid">;

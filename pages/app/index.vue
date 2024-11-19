@@ -10,6 +10,6 @@ const user = useUser();
     data-page="app_home"
     class="h-[200dvh]"
   >
-    hello world! {{ user?.data?.firstName }}
+    <p>hello world! {{ user?.data?.firstName }}</p>
   </div>
 </template>

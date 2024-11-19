@@ -115,11 +115,10 @@ const verification = ref<boolean>(false);
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
-    <TooltipProvider>
+    <TooltipProvider v-if="!user.verified">
       <Tooltip>
         <TooltipTrigger>
           <WarningCircle
-            v-if="!user.verified"
             class="text-destructive-light"
           />
         </TooltipTrigger>
