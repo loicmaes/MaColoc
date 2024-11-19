@@ -5,6 +5,10 @@ export default {
     seeMyProfile: "View my profile",
   },
   toast: {
+    loggedOut: {
+      title: "Oh no 👀",
+      description: "Your session has expired... Please log in again to continue enjoying the tool!",
+    },
     userNotFound: {
       title: "Oops 💢",
       description: "User not found!",

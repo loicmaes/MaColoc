@@ -17,8 +17,8 @@ export async function useAuth(t: InternalizationTool, access: boolean) {
   if (access && !user.value) {
     await navigateTo(localePath("/auth/login"));
     return toast({
-      title: t(""),
-      description: t(""),
+      title: t("toast.loggedOut.title"),
+      description: t("toast.loggedOut.description"),
       variant: "destructive",
     });
   }
