@@ -123,7 +123,16 @@ export default {
       },
     },
   },
+  // navigation
+  nav: {
+    sections: {
+      social: "Social",
+    },
+  },
   // app
+  overview: {
+    navigationLabel: "Vue d'ensemble",
+  },
   rentalProfile: {
     navigationLabel: "Profil locataire",
     create: {
