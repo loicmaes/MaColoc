@@ -10,23 +10,27 @@ datasource db {
 
 // ENUMS
 enum MaritalStatus {
-  signle
+  single
   relationship
 }
+
 enum SubscriptionPlan {
   free
   premium
 }
+
 enum Gender {
   man
   woman
   other
 }
+
 enum Frequency {
   regularly
   socially
   never
 }
+
 enum JobStatus {
   permanent
   fixedTerm
@@ -34,6 +38,7 @@ enum JobStatus {
   selfEmployed
   unemployed
 }
+
 enum Diet {
   vegetarian
   vegan
@@ -41,16 +46,19 @@ enum Diet {
   omnivore
   carnivore
 }
+
 enum DayMoment {
   day
   evening
   night
   weekend
 }
+
 enum HistoryStatus {
   new
   experienced
 }
+
 enum Language {
   french
   english
@@ -85,6 +93,7 @@ model User {
 
   @@map("users")
 }
+
 model UserInfo {
   userUid   String    @id
   firstName String
@@ -98,6 +107,7 @@ model UserInfo {
 
   @@map("userInfo")
 }
+
 model UserPreference {
   userUid                String   @id
   openToFriendRequests   Boolean  @default(true)
@@ -110,6 +120,7 @@ model UserPreference {
 
   @@map("userPreferences")
 }
+
 model VerificationCode {
   id        Int       @id @default(autoincrement())
   userUid   String
