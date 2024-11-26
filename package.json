@@ -1,14 +1,18 @@
 {
-  "name": "nuxt-app",
+  "name": "ma-coloc",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "prisma": {
     "schema": "server/database/schema.prisma"
   },
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --host",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
@@ -41,13 +45,10 @@
     "vue-router": "latest",
     "zod": "^3.23.8"
   },
-  "engines": {
-    "node": ">=22"
-  },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
   "devDependencies": {
     "@types/node": "^22.7.9",
     "eslint": "^9.13.0",
+    "prisma": "5.22.0",
     "typescript": "^5.6.3"
   }
 }
