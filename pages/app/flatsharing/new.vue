@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Plus } from "@iconoir/vue";
+import { Plus, SystemRestart } from "@iconoir/vue";
 import { toTypedSchema } from "@vee-validate/zod";
 import { useForm } from "vee-validate";
 import * as z from "zod";
@@ -11,6 +11,7 @@ useHead({
   title: `Ma Coloc' · ${t("flatSharing.new.tabLabel")}`,
 });
 
+const loading = ref<boolean>(false);
 const canLeave = ref<boolean>(false);
 
 const schema = toTypedSchema(z.object({
@@ -29,6 +30,8 @@ const { handleSubmit } = useForm({
   },
 });
 const onSubmit = handleSubmit(async (values) => {
+  loading.value = true;
+
   const payload = {
     name: values.name,
     address: {
@@ -39,7 +42,12 @@ const onSubmit = handleSubmit(async (values) => {
       country: values.addressCountry,
     },
   };
-  console.table(payload);
+  canLeave.value = await requestCreateFlatSharing(t, payload);
+
+  if (canLeave.value)
+    await navigateTo(useLocalePath()("/app/flatSharing/"));
+
+  loading.value = false;
 });
 
 onBeforeRouteLeave(() => {
@@ -158,9 +166,18 @@ onBeforeRouteLeave(() => {
         :label="t('flatSharing.new.form.address.label')"
       />
 
-      <Button class="self-end">
-        <Plus />
-        <span>{{ t("flatSharing.new.form.action") }}</span>
+      <Button
+        class="self-end"
+        :disabled="loading"
+      >
+        <template v-if="loading">
+          <SystemRestart class="animate-spin" />
+          <span>{{ t("flatSharing.new.form.actionLoading") }}</span>
+        </template>
+        <template v-else>
+          <Plus />
+          <span>{{ t("flatSharing.new.form.action") }}</span>
+        </template>
       </Button>
     </form>
   </div>
