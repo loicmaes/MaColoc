@@ -149,6 +149,7 @@ export default {
     navigationLabel: "Profil locataire",
     tabLabel: "Mon profil locataire",
     create: {
+      navigationLabel: "Créer mon profil",
       tabLabel: "Création de mon profil",
       title: "Créer ton profil locataire",
       description: "Il est au coeur de l'application et te permet de : gérer une colocation avec un autre membre, trouver une annonce immobilière disponible en colocation, trouver un colocataire fiable, et j'en passe.",
@@ -295,6 +296,12 @@ export default {
           action: "Confirmer",
         },
       },
+    },
+    new: {
+      navigationLabel: "Créer mon espace",
+      tabLabel: "Création de mon espace",
+      title: "Créer ton espace",
+      description: "Gérer ta colocation permet de vous éviter un certain nombre de conflit dans le futur. Anticiper les dépenses, une convention de colocation rédigée par les colocataires afin de convenir de la manière de vous organiser dans le ménage. Prends-soin de le configurer au petits oignons.",
     },
     members: {
       navigationLabel: "Membres",

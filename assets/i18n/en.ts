@@ -149,6 +149,7 @@ export default {
     navigationLabel: "Tenant profile",
     tabLabel: "My tenant profile",
     create: {
+      navigationLabel: "Create my profile",
       tabLabel: "Creating my tenant profile",
       title: "Create your tenant profile",
       description: "It's the core of the application and allows you to: manage a flatshare with another member, find a rental listing available for flatsharing, find a reliable flatmate, and more.",
@@ -285,6 +286,12 @@ export default {
         caption: "Create your space, invite your flatmates, and start managing your shared life! Organize your shopping, expenses, schedules, and more.",
         action: "Create my space",
       },
+    },
+    new: {
+      navigationLabel: "Create my space",
+      tabLabel: "Creating my space",
+      title: "Create your space",
+      description: "Managing your flatshare helps you avoid a number of conflicts in the future. Plan expenses, draft a flatshare agreement with your flatmates to agree on how to organize household tasks. Take care to configure it meticulously.",
     },
     members: {
       navigationLabel: "Members",
