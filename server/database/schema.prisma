@@ -114,12 +114,14 @@ model User {
   createdAt        DateTime         @default(now())
   updatedAt        DateTime         @updatedAt
 
-  data              UserInfo?
-  preferences       UserPreference?
-  verificationCodes VerificationCode[]
-  authSessions      AuthSession[]
-  rentalProfile     RentalProfile?
-  notifications     Notification[]
+  data                   UserInfo?
+  preferences            UserPreference?
+  verificationCodes      VerificationCode[]
+  authSessions           AuthSession[]
+  rentalProfile          RentalProfile?
+  notifications          Notification[]
+  flatSharingInvitations FlatSharingInvitation[]
+  flatSharingMember      FlatSharingMember?
 
   @@map("users")
 }
@@ -201,4 +203,58 @@ model RentalProfile {
   user User @relation(fields: [userUid], references: [uid], onDelete: Cascade)
 
   @@map("rentalProfiles")
+}
+
+// FLAT SHARING
+model PostalAddress {
+  id         Int     @id @default(autoincrement())
+  street     String
+  additional String?
+  zipCode    String
+  city       String
+  country    String
+
+  flatSharings FlatSharing[]
+
+  @@unique([street, additional, zipCode, city, country])
+  @@map("postalAddresses")
+}
+
+model FlatSharing {
+  uid       String   @id
+  name      String
+  addressId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  address     PostalAddress           @relation(fields: [addressId], references: [id])
+  members     FlatSharingMember[]
+  invitations FlatSharingInvitation[]
+
+  @@map("flatSharings")
+}
+
+model FlatSharingInvitation {
+  userUid        String
+  flatSharingUid String
+  emittedAt      DateTime @default(now())
+  expiresAt      DateTime
+
+  user        User        @relation(fields: [userUid], references: [uid], onDelete: Cascade)
+  flatSharing FlatSharing @relation(fields: [flatSharingUid], references: [uid], onDelete: Cascade)
+
+  @@id([userUid, flatSharingUid])
+  @@map("flatSharingInvitations")
+}
+
+model FlatSharingMember {
+  userUid        String   @unique
+  flatSharingUid String
+  joinedAt       DateTime @default(now())
+
+  user        User        @relation(fields: [userUid], references: [uid], onDelete: Cascade)
+  flatSharing FlatSharing @relation(fields: [flatSharingUid], references: [uid], onDelete: Cascade)
+
+  @@id([userUid, flatSharingUid])
+  @@map("flatSharingMembers")
 }

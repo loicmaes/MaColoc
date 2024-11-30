@@ -1,0 +1,37 @@
+Table FlatSharing {
+  uid string pk
+  name string
+  addressId int [not null]
+
+  createAt datetime [not null, default: `now()`]
+  updatedAt datetime [not null, default: `now()`]
+}
+
+Table FlatSharingMember {
+  userUid string pk
+  flatSharingUid string pk
+
+  joinedAt datetime [not null, default: `now()`]
+}
+
+Table FlatSharingInvitation {
+  userUid string pk
+  flatSharingUid string pk
+  emittedAt datetime [not null]
+  expiresAt datetime [not null]
+}
+
+Table PostalAddress {
+  id int pk
+  street string unique [not null]
+  additional string
+  zipCode string unique [not null]
+  city string unique [not null]
+  country string unique [not null]
+}
+
+Ref: FlatSharing.addressId > PostalAddress.id
+Ref: FlatSharingMember.userUid > User.uid
+Ref: FlatSharingMember.flatSharingUid > FlatSharing.uid
+Ref: FlatSharingInvitation.userUid < User.uid
+Ref: FlatSharingInvitation.flatSharingUid < FlatSharing.uid
