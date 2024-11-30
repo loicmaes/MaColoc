@@ -130,6 +130,12 @@ export default {
       flatSharing: "Flat Sharing",
     },
   },
+  // showcase
+  showcase: {
+    home: {
+      tabLabel: "flat sharing reinvented",
+    },
+  },
   // app
   notifications: {
     noStatement: "You don't have new notifications.",
@@ -137,10 +143,13 @@ export default {
   },
   overview: {
     navigationLabel: "Overview",
+    tabLabel: "Overview",
   },
   rentalProfile: {
     navigationLabel: "Tenant profile",
+    tabLabel: "My tenant profile",
     create: {
+      tabLabel: "Creating my tenant profile",
       title: "Create your tenant profile",
       description: "It's the core of the application and allows you to: manage a flatshare with another member, find a rental listing available for flatsharing, find a reliable flatmate, and more.",
     },
@@ -270,6 +279,7 @@ export default {
   flatSharing: {
     home: {
       navigationLabel: "My space",
+      tabLabel: "My space",
       emptyStatus: {
         title: "You are not in a flatshare yet",
         caption: "Create your space, invite your flatmates, and start managing your shared life! Organize your shopping, expenses, schedules, and more.",
@@ -278,6 +288,7 @@ export default {
     },
     members: {
       navigationLabel: "Members",
+      tabLabel: "Members",
     },
   },
 };

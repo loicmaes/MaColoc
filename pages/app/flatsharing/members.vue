@@ -1,5 +1,10 @@
 <script setup lang="ts">
+const { t } = useI18n();
+await useAuth(t, true);
 
+useHead({
+  title: `Ma Coloc' · ${t("flatSharing.members.tabLabel")}`,
+});
 </script>
 
 <template>

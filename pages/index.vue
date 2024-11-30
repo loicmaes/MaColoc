@@ -3,6 +3,13 @@ definePageMeta({
   layout: "showcase",
 });
 
+const { t } = useI18n();
+await useAuth(t, true);
+
+useHead({
+  title: `Ma Coloc', ${t("showcase.home.tabLabel")}`,
+});
+
 const switchLocale = useSwitchLocalePath();
 </script>
 

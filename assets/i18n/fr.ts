@@ -130,6 +130,12 @@ export default {
       flatSharing: "Colocation",
     },
   },
+  // showcase
+  showcase: {
+    home: {
+      tabLabel: "la colocation réinventée",
+    },
+  },
   // app
   notifications: {
     noStatement: "Tu n'as pas de nouvelles notifications.",
@@ -137,10 +143,13 @@ export default {
   },
   overview: {
     navigationLabel: "Vue d'ensemble",
+    tabLabel: "Vue d'ensemble",
   },
   rentalProfile: {
     navigationLabel: "Profil locataire",
+    tabLabel: "Mon profil locataire",
     create: {
+      tabLabel: "Création de mon profil",
       title: "Créer ton profil locataire",
       description: "Il est au coeur de l'application et te permet de : gérer une colocation avec un autre membre, trouver une annonce immobilière disponible en colocation, trouver un colocataire fiable, et j'en passe.",
     },
@@ -270,6 +279,7 @@ export default {
   flatSharing: {
     home: {
       navigationLabel: "Mon espace",
+      tabLabel: "Mon espace",
       emptyStatus: {
         title: "Tu n'es pas encore en colocation",
         caption: "Créer ton espace, invite tes colocataires, et commencez à gérer votre idylle à plusieurs ! Organisez vos courses, vos dépenses, vos agendas, etc.",
@@ -288,6 +298,7 @@ export default {
     },
     members: {
       navigationLabel: "Membres",
+      tabLabel: "Les membres",
     },
   },
 };

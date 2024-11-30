@@ -2,6 +2,10 @@
 const { t } = useI18n();
 await useAuth(t, true);
 
+useHead({
+  title: `Ma Coloc' · ${t("overview.tabLabel")}`,
+});
+
 const user = useUser();
 </script>
 

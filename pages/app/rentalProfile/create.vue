@@ -22,6 +22,10 @@ import { Switch } from "~/components/ui/switch";
 const { t } = useI18n();
 await useAuth(t, true);
 
+useHead({
+  title: `Ma Coloc' · ${t("rentalProfile.create.tabLabel")}`,
+});
+
 if (useUser().value?.rentalProfile) {
   await navigateTo(useLocalePath()("/app/rentalProfile"));
 }

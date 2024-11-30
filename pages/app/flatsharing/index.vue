@@ -2,6 +2,12 @@
 import { Plus } from "@iconoir/vue";
 
 const { t } = useI18n();
+await useAuth(t, true);
+
+useHead({
+  title: `Ma Coloc' · ${t("flatSharing.home.tabLabel")}`,
+});
+
 const user = useUser();
 </script>
 
