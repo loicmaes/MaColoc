@@ -1,3 +1,4 @@
+import type { H3Event } from "h3";
 import type {
   ICreateCompleteNotification,
   ICreateEmailNotification,
@@ -5,6 +6,7 @@ import type {
   ICreatePushNotification,
 } from "~/types/notification";
 import * as notificationRepository from "~/server/database/repositories/notification";
+import { error, HttpCode } from "~/types/generics/http";
 
 export async function registerNotification(payload: ICreateNotification, userUid?: string) {
   switch (payload.type) {
@@ -16,5 +18,29 @@ export async function registerNotification(payload: ICreateNotification, userUid
       return await notificationRepository.registerComplete(payload as ICreateCompleteNotification, userUid);
     default:
       throw new Error("Unknown notification type");
+  }
+}
+
+export async function readNotification(event: H3Event<Request>, notificationId: number, userUid: string) {
+  try {
+    return await notificationRepository.read(notificationId, userUid);
+  }
+  catch (e) {
+    return error(event, {
+      code: HttpCode.ServerError,
+      message: JSON.stringify(e),
+    });
+  }
+}
+
+export async function readAllNotifications(event: H3Event<Request>, userUid: string) {
+  try {
+    return await notificationRepository.readAll(userUid);
+  }
+  catch (e) {
+    return error(event, {
+      code: HttpCode.ServerError,
+      message: JSON.stringify(e),
+    });
   }
 }
