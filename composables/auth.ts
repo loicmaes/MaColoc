@@ -5,6 +5,7 @@ import type { InternalizationTool } from "~/types/generics/frontSpecific";
 import type { IAuthLoginBody } from "~/types/auth";
 import { k_token } from "~/server/services/cookies";
 import { HttpCode } from "~/types/generics/http";
+import { requestFlatSharing } from "~/composables/flatSharing";
 
 export const useUser = () => useState<IUser | null>("user", () => null);
 const useAuthCookie = () => useCookie(k_token);
@@ -78,6 +79,7 @@ export async function sendLogInRequest(t: InternalizationTool, payload: IAuthLog
       body: payload,
     });
     useUser().value = user;
+    requestFlatSharing().then();
     await navigateTo(useLocalePath()("/app"));
     toast({
       title: t("auth.login.toast.title"),

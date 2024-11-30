@@ -9,6 +9,7 @@ const iconProps = {
 };
 
 await useAuthSession();
+requestFlatSharing().then();
 </script>
 
 <template>
