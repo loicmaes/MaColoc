@@ -26,7 +26,7 @@ const cpTabs = computed((): NavigationCategory[] => user.value ? filterTabs(tabs
         </NuxtLinkLocale>
       </header>
 
-      <nav class="px-1 py-4 flex flex-col">
+      <nav class="px-2 py-4 flex flex-col">
         <div
           v-for="(tab, i) in cpTabs"
           :key="tab.label ?? `tab-${i}`"
