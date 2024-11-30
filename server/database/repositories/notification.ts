@@ -60,6 +60,9 @@ export async function readAll(userUid: string): Promise<INotification[]> {
   return await prisma.notification.findMany({
     where: {
       userUid,
+      type: {
+        in: ["push", "both"],
+      },
     },
   }) as INotification[];
 }

@@ -12,6 +12,13 @@ export async function getUser(uid: string): Promise<IUser> {
       data: true,
       preferences: true,
       rentalProfile: true,
+      notifications: {
+        where: {
+          type: {
+            in: ["push", "both"],
+          },
+        },
+      },
     },
   });
   if (!user) throw new NotFoundError();
@@ -29,6 +36,13 @@ export async function getUserByEmail<T>(email: string): Promise<T> {
       data: true,
       preferences: true,
       rentalProfile: true,
+      notifications: {
+        where: {
+          type: {
+            in: ["push", "both"],
+          },
+        },
+      },
     },
   });
   if (!user) throw new NotFoundError();
@@ -65,6 +79,13 @@ export async function create(payload: ICreateUserBody): Promise<IUser> {
         data: true,
         preferences: true,
         rentalProfile: true,
+        notifications: {
+          where: {
+            type: {
+              in: ["push", "both"],
+            },
+          },
+        },
       },
     });
     const _user = { ...user } as unknown as Partial<IInternalUser>;
@@ -94,6 +115,13 @@ export async function verify(uid: string): Promise<IUser> {
       data: true,
       preferences: true,
       rentalProfile: true,
+      notifications: {
+        where: {
+          type: {
+            in: ["push", "both"],
+          },
+        },
+      },
     },
   });
   const _user = { ...user } as unknown as Partial<IInternalUser>;

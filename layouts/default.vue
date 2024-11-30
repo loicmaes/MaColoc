@@ -3,6 +3,7 @@ import UserMenu from "~/components/layouts/user/UserMenu.vue";
 import type { NavigationCategory } from "~/types/generics/frontSpecific";
 import tabs from "~/assets/navigationTabs/appNavigation";
 import { filterTabs } from "~/lib/navigation";
+import UserNotifications from "~/components/layouts/user/notifications/UserNotifications.vue";
 
 const { t } = useI18n();
 
@@ -57,7 +58,8 @@ const cpTabs = computed((): NavigationCategory[] => filterTabs(tabs));
     </aside>
 
     <main class="basis-4/5 flex flex-col">
-      <header class="sticky z-10 top-0 bg-background h-16 flex items-center justify-end px-4 border-b border-border">
+      <header class="sticky z-10 top-0 bg-background h-16 flex items-center justify-end gap-4 px-4 border-b border-border">
+        <UserNotifications />
         <UserMenu />
       </header>
 
