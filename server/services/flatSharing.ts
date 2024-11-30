@@ -61,7 +61,7 @@ export async function sendInvite(event: H3Event<Request>, sourceUid: string, tar
       sourceUid,
     });
 
-    const mailTemplate = useUserInvitationSent(sourceUser.data?.firstName ?? "unknown");
+    const mailTemplate = await useUserInvitationSent(sourceUser.data?.firstName ?? "unknown");
     mailService.send({
       to: targetUser.email,
       template: mailTemplate,

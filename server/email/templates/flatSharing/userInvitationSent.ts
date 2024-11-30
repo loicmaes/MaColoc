@@ -1,8 +1,15 @@
+import { render } from "@vue-email/render";
 import type { IMailTemplate } from "~/types/generics/mail";
+import UserInvitationSent from "~/server/email/components/UserInvitationSent.vue";
+import { bindRoute } from "~/lib/constants";
 
-const useUserInvitationSent = (firstName: string): IMailTemplate => ({
-  subject: `📩 ${firstName} t'invite !`,
-  text: `${firstName} t'as invité à rejoindre son espace colocatif ! Accepte l'invitation pour accéder à ton espace.`,
-  html: "",
-});
+const useUserInvitationSent = async (firstName: string): Promise<IMailTemplate> => {
+  const subject = `${firstName} t'invite 📩`;
+  const link = bindRoute("/app");
+  return {
+    subject,
+    text: `${link}`,
+    html: await render(UserInvitationSent, { subject, firstName, link }),
+  };
+};
 export default useUserInvitationSent;

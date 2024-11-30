@@ -23,7 +23,7 @@ export async function createUserAccount(event: HttpRequest, payload: ICreateUser
 
     mailService.send({
       to: user.email,
-      template: useUserAccountCreatedTemplate(code.code),
+      template: await useUserAccountCreatedTemplate(code.code),
     }, {
       notify: user.uid,
     }).catch(console.error);
@@ -54,7 +54,7 @@ export async function verifyUserAccount(event: HttpRequest, userUid: string) {
 
     mailService.send({
       to: user.email,
-      template: useUserAccountVerifiedTemplate(),
+      template: await useUserAccountVerifiedTemplate(),
     }, {
       notify: user.uid,
     }).catch(console.error);

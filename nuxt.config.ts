@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import vue from "@vitejs/plugin-vue";
+
 export default defineNuxtConfig({
   modules: [
     "@nuxtjs/tailwindcss",
@@ -27,6 +29,13 @@ export default defineNuxtConfig({
     },
   },
   compatibilityDate: "2024-04-03",
+  nitro: {
+    rollupConfig: {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      plugins: [vue()],
+    },
+  },
   eslint: {
     checker: true,
     config: {

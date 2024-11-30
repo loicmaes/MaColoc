@@ -1,9 +1,15 @@
+import { render } from "@vue-email/render";
 import type { IMailTemplate } from "~/types/generics/mail";
 import { bindRoute } from "~/lib/constants";
+import UserAccountVerified from "~/server/email/components/UserAccountVerified.vue";
 
-const useUserAccountVerifiedTemplate = (): IMailTemplate => ({
-  subject: "Youpi 🎉 Ton compte a été vérifié",
-  text: `Merci de nous faire confiance ! Ton compte a été vérifié avec succès. Tu peux maintenant te faire plaisir sur notre interface ${bindRoute("/app")}`,
-  html: "",
-});
+const useUserAccountVerifiedTemplate = async (): Promise<IMailTemplate> => {
+  const subject = "Youpi 🎉 Ton compte a été vérifié";
+  const link = bindRoute("/app");
+  return {
+    subject,
+    text: "",
+    html: await render(UserAccountVerified, { subject, link }),
+  };
+};
 export default useUserAccountVerifiedTemplate;
