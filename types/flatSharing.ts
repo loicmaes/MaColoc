@@ -15,6 +15,7 @@ export interface IFlatSharing {
 export interface IFlatSharingInvitation {
   userUid: string;
   flatSharingUid: string;
+  sourceUid?: string;
   emittedAt: Date;
   expiresAt: Date;
 
@@ -39,6 +40,7 @@ export interface ICreateRichFlatSharing {
 export interface ICreateFlatSharingInvitation {
   userUid: string;
   flatSharingUid: string;
+  sourceUid?: string;
 }
 export interface ICreateFlatSharingMember {
   userUid: string;

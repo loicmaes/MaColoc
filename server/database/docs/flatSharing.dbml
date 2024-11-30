@@ -17,6 +17,7 @@ Table FlatSharingMember {
 Table FlatSharingInvitation {
   userUid string pk
   flatSharingUid string pk
+  sourceUid string
   emittedAt datetime [not null]
   expiresAt datetime [not null]
 }
@@ -35,3 +36,4 @@ Ref: FlatSharingMember.userUid > User.uid
 Ref: FlatSharingMember.flatSharingUid > FlatSharing.uid
 Ref: FlatSharingInvitation.userUid < User.uid
 Ref: FlatSharingInvitation.flatSharingUid < FlatSharing.uid
+Ref: FlatSharingInvitation.sourceUid < User.uid

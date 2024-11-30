@@ -114,14 +114,15 @@ model User {
   createdAt        DateTime         @default(now())
   updatedAt        DateTime         @updatedAt
 
-  data                   UserInfo?
-  preferences            UserPreference?
-  verificationCodes      VerificationCode[]
-  authSessions           AuthSession[]
-  rentalProfile          RentalProfile?
-  notifications          Notification[]
-  flatSharingInvitations FlatSharingInvitation[]
-  flatSharingMember      FlatSharingMember?
+  data                       UserInfo?
+  preferences                UserPreference?
+  verificationCodes          VerificationCode[]
+  authSessions               AuthSession[]
+  rentalProfile              RentalProfile?
+  notifications              Notification[]
+  flatSharingInvitations     FlatSharingInvitation[]
+  flatSharingSentInvitations FlatSharingInvitation[] @relation(name: "flatSharingSendInvitations")
+  flatSharingMember          FlatSharingMember?
 
   @@map("users")
 }
@@ -237,10 +238,12 @@ model FlatSharing {
 model FlatSharingInvitation {
   userUid        String
   flatSharingUid String
+  sourceUid      String?
   emittedAt      DateTime @default(now())
   expiresAt      DateTime
 
   user        User        @relation(fields: [userUid], references: [uid], onDelete: Cascade)
+  source      User?       @relation(name: "flatSharingSendInvitations", fields: [sourceUid], references: [uid], onDelete: SetNull)
   flatSharing FlatSharing @relation(fields: [flatSharingUid], references: [uid], onDelete: Cascade)
 
   @@id([userUid, flatSharingUid])

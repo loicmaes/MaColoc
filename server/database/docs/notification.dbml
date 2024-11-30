@@ -7,6 +7,7 @@ Enum NotificationType {
 Table Notification {
   id int pk
   userUid string [not null]
+  sourceUid string
   type NotificationType [not null]
   // email
   template string
@@ -23,3 +24,4 @@ Table Notification {
 }
 
 Ref: Notification.userUid < User.uid
+Ref: Notification.sourceUid < User.uid
