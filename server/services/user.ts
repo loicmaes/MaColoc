@@ -24,6 +24,8 @@ export async function createUserAccount(event: HttpRequest, payload: ICreateUser
     mailService.send({
       to: user.email,
       template: useUserAccountCreatedTemplate(code.code),
+    }, {
+      notify: user.uid,
     }).catch(console.error);
 
     return user;
@@ -53,6 +55,8 @@ export async function verifyUserAccount(event: HttpRequest, userUid: string) {
     mailService.send({
       to: user.email,
       template: useUserAccountVerifiedTemplate(),
+    }, {
+      notify: user.uid,
     }).catch(console.error);
 
     return user;

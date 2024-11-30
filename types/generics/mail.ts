@@ -17,5 +17,5 @@ export interface IMailAttachement {
 }
 
 export interface IMailConfig {
-  notify?: boolean;
+  notify?: boolean | string;
 }

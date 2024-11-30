@@ -19,11 +19,20 @@ const transporter = () => {
 export async function send(body: IMailBody, options?: IMailConfig) {
   const config = useRuntimeConfig();
 
-  if (options?.notify) await registerNotification({
-    type: "email",
-    subject: body.subject ?? body.template.subject ?? "Sujet",
-    template: body.template.text,
-  });
+  if (options?.notify) {
+    if (typeof options?.notify === "string")
+      await registerNotification({
+        type: "email",
+        subject: body.subject ?? body.template.subject ?? "Sujet",
+        template: body.template.text,
+      }, options.notify as string);
+    else
+      await registerNotification({
+        type: "email",
+        subject: body.subject ?? body.template.subject ?? "Sujet",
+        template: body.template.text,
+      });
+  }
 
   return useMailer().sendMail({
     transporter: transporter(),
