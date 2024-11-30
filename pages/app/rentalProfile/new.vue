@@ -82,7 +82,10 @@ onBeforeRouteLeave(() => {
 </script>
 
 <template>
-  <div data-page="app_rentalProfile_create">
+  <div
+    data-page="app_rentalProfile_create"
+    class="w-[min(100%,60rem)] mx-auto"
+  >
     <header class="flex flex-col gap-2 px-6 pt-4 mb-6">
       <h1 class="text-2xl font-bold">
         {{ t("rentalProfile.create.title") }}
