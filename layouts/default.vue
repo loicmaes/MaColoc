@@ -8,7 +8,8 @@ import UserNotifications from "~/components/layouts/user/notifications/UserNotif
 const { t } = useI18n();
 
 const user = useUser();
-const cpTabs = computed((): NavigationCategory[] => user.value ? filterTabs(tabs(user.value)) : []);
+const flatSharing = useFlatSharing();
+const cpTabs = computed((): NavigationCategory[] => user.value ? filterTabs(tabs(user.value, flatSharing.value)) : []);
 </script>
 
 <template>
