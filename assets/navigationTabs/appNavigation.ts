@@ -1,8 +1,9 @@
 import { User, Group, Community } from "@iconoir/vue";
 import type { NavigationCategory } from "~/types/generics/frontSpecific";
 import type { IUser } from "~/types/user";
+import type { IFlatSharing } from "~/types/flatSharing";
 
-const tabs = (user: IUser): NavigationCategory[] => ([
+const tabs = (user: IUser, flatSharing: IFlatSharing): NavigationCategory[] => ([
   {
     children: [
       {
@@ -37,19 +38,19 @@ const tabs = (user: IUser): NavigationCategory[] => ([
         icon: Group,
         key: "flatSharing.new",
         path: "new",
-        renderCondition: true,
+        renderCondition: !flatSharing,
       },
       {
         icon: Group,
         key: "flatSharing.home",
         path: "",
-        renderCondition: false,
+        renderCondition: !!flatSharing,
       },
       {
         icon: Community,
         key: "flatSharing.members",
         path: "members",
-        renderCondition: false,
+        renderCondition: !!flatSharing,
       },
     ],
   },
