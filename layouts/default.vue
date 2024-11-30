@@ -42,7 +42,7 @@ const cpTabs = computed((): NavigationCategory[] => filterTabs(tabs));
             as-child
           >
             <NuxtLinkLocale
-              :to="`/app/${tab.prefix ? tab.prefix + '/' : ''}${entry.path}/`"
+              :to="`/app/${tab.prefix ? tab.prefix + '/' : ''}${entry.path}${entry.path.length ? '/' : ''}`"
               active-class="bg-secondary"
               exact-active-class="bg-secondary"
             >
