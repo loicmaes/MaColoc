@@ -20,6 +20,31 @@ export default {
   },
   labels: {
     logOut: "Déconnexion",
+    dates: {
+      days: {
+        monday: "Lundi",
+        tuesday: "Mardi",
+        wednesday: "Mercredi",
+        thursday: "Jeudi",
+        friday: "Vendredi",
+        saturday: "Samedi",
+        sunday: "Dimanche",
+      },
+      months: {
+        january: "Janvier",
+        february: "Février",
+        march: "Mars",
+        april: "Avril",
+        may: "Mai",
+        june: "Juin",
+        july: "Juillet",
+        august: "Août",
+        september: "Septembre",
+        october: "Octobre",
+        november: "Novembre",
+        december: "Décembre",
+      },
+    },
     gender: {
       man: "Homme",
       woman: "Femme",
@@ -337,6 +362,28 @@ export default {
     members: {
       navigationLabel: "Membres",
       tabLabel: "Les membres",
+      title: "Membres",
+      addMember: {
+        trigger: "Ajouter un membre",
+        dialog: {
+          title: "Inviter un utilisateur",
+          description: "Envoie une invitation par e-mail a un utilisateur pour rejoindre ta colocation. Il gagnera les mêmes droits de gestions que toi et pourra ainsi modifier les informations au même titre que toi !",
+          input: "Adresse e-mail",
+          addMore: "Inviter d'autres membres",
+          action: {
+            embed: "Envoyer l'invitation",
+            loading: "Envoie de l'invitation...",
+          },
+        },
+        toast: {},
+      },
+      table: {
+        firstName: "Prénom",
+        lastName: "Nom",
+        email: "Adresse e-mail",
+        joinedAt: "A rejoint le",
+        me: "moi",
+      },
     },
   },
 };

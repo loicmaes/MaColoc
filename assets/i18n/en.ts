@@ -20,6 +20,31 @@ export default {
   },
   labels: {
     logOut: "Log out",
+    dates: {
+      days: {
+        monday: "Monday",
+        tuesday: "Tuesday",
+        wednesday: "Wednesday",
+        thursday: "Thursday",
+        friday: "Friday",
+        saturday: "Saturday",
+        sunday: "Sunday",
+      },
+      months: {
+        january: "January",
+        february: "February",
+        march: "March",
+        april: "April",
+        may: "May",
+        june: "June",
+        july: "July",
+        august: "August",
+        september: "September",
+        october: "October",
+        november: "November",
+        december: "December",
+      },
+    },
     gender: {
       man: "Man",
       woman: "Woman",
@@ -327,6 +352,28 @@ export default {
     members: {
       navigationLabel: "Members",
       tabLabel: "Members",
+      title: "Members",
+      addMember: {
+        trigger: "Add a member",
+        dialog: {
+          title: "Invite a user",
+          description: "Send an invitation by email to a user to join your flatshare. They will have the same management rights as you and will be able to edit information just like you!",
+          input: "Email address",
+          addMore: "Invite more users",
+          action: {
+            embed: "Send invite",
+            loading: "Sending invite...",
+          },
+        },
+        toast: {},
+      },
+      table: {
+        firstName: "First name",
+        lastName: "Last name",
+        email: "Email address",
+        joinedAt: "Joined at",
+        me: "me",
+      },
     },
   },
 };

@@ -3,7 +3,7 @@ import prisma from "~/server/database";
 import { NotFoundError } from "~/types/generics/errors";
 
 export async function create(userUid: string, payload: ICreateFlatSharing): Promise<IFlatSharing> {
-  return await prisma.flatSharing.create({
+  const flatSharing = await prisma.flatSharing.create({
     data: {
       ...payload,
       members: {
@@ -16,10 +16,28 @@ export async function create(userUid: string, payload: ICreateFlatSharing): Prom
     },
     include: {
       address: true,
-      members: true,
+      members: {
+        include: {
+          user: {
+            include: {
+              data: true,
+            },
+          },
+        },
+      },
       invitations: true,
     },
-  }) as IFlatSharing;
+  });
+
+  return {
+    ...flatSharing,
+    members: (flatSharing.members ?? []).map((member) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const _member = { ...member } as any;
+      delete _member.user.password;
+      return _member;
+    }),
+  } as IFlatSharing;
 }
 
 export async function get(uid: string): Promise<IFlatSharing> {
@@ -33,10 +51,27 @@ export async function get(uid: string): Promise<IFlatSharing> {
     },
     include: {
       address: true,
-      members: true,
+      members: {
+        include: {
+          user: {
+            include: {
+              data: true,
+            },
+          },
+        },
+      },
       invitations: true,
     },
   });
   if (!flatSharing) throw new NotFoundError();
-  return flatSharing as IFlatSharing;
+
+  return {
+    ...flatSharing,
+    members: (flatSharing.members ?? []).map((member) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const _member = { ...member } as any;
+      delete _member.user.password;
+      return _member;
+    }),
+  } as IFlatSharing;
 }
