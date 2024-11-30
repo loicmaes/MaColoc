@@ -1,36 +1,12 @@
 <script setup lang="ts">
-import { User } from "@iconoir/vue";
 import UserMenu from "~/components/layouts/user/UserMenu.vue";
+import type { NavigationCategory } from "~/types/generics/frontSpecific";
+import tabs from "~/assets/navigationTabs/appNavigation";
+import { filterTabs } from "~/lib/navigation";
 
 const { t } = useI18n();
 
-type NavigationCategory = {
-  label?: string;
-  children: NavigationTab[];
-};
-type NavigationTab = {
-  path: string;
-  key: string;
-};
-const tabs: NavigationCategory[] = [
-  {
-    children: [
-      {
-        key: "overview",
-        path: "",
-      },
-    ],
-  },
-  {
-    label: "social",
-    children: [
-      {
-        key: "rentalProfile",
-        path: "rentalProfile",
-      },
-    ],
-  },
-];
+const cpTabs = computed((): NavigationCategory[] => filterTabs(tabs));
 </script>
 
 <template>
@@ -50,13 +26,13 @@ const tabs: NavigationCategory[] = [
 
       <nav class="px-1 py-4 flex flex-col">
         <div
-          v-for="(tab, i) in tabs"
+          v-for="(tab, i) in cpTabs"
           :key="tab.label ?? `tab-${i}`"
-          class="flex flex-col"
+          class="flex flex-col gap-1"
         >
           <span
             v-if="tab.label"
-            class="ml-3 mb-1 mt-4 font-medium text-sm text-muted-foreground"
+            class="ml-3 mt-4 font-medium text-sm text-muted-foreground"
           >{{ t(`nav.sections.${tab.label}`) }}</span>
           <Button
             v-for="entry in tab.children"
@@ -66,11 +42,13 @@ const tabs: NavigationCategory[] = [
             as-child
           >
             <NuxtLinkLocale
-              :to="`/app/${entry.path}/`"
+              :to="`/app/${tab.prefix ? tab.prefix + '/' : ''}${entry.path}/`"
               active-class="bg-secondary"
               exact-active-class="bg-secondary"
             >
-              <User />
+              <template v-if="entry.icon">
+                <component :is="entry.icon" />
+              </template>
               <span>{{ t(`${entry.key}.navigationLabel`) }}</span>
             </NuxtLinkLocale>
           </Button>
