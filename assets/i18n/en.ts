@@ -127,6 +127,7 @@ export default {
   nav: {
     sections: {
       social: "Social",
+      flatSharing: "Flat Sharing",
     },
   },
   // app
@@ -260,6 +261,19 @@ export default {
           },
         },
       },
+    },
+  },
+  flatSharing: {
+    home: {
+      navigationLabel: "My space",
+      emptyStatus: {
+        title: "You are not in a flatshare yet",
+        caption: "Create your space, invite your flatmates, and start managing your shared life! Organize your shopping, expenses, schedules, and more.",
+        action: "Create my space",
+      },
+    },
+    members: {
+      navigationLabel: "Members",
     },
   },
 };

@@ -127,6 +127,7 @@ export default {
   nav: {
     sections: {
       social: "Social",
+      flatSharing: "Colocation",
     },
   },
   // app
@@ -260,6 +261,29 @@ export default {
           },
         },
       },
+    },
+  },
+  flatSharing: {
+    home: {
+      navigationLabel: "Mon espace",
+      emptyStatus: {
+        title: "Tu n'es pas encore en colocation",
+        caption: "Créer ton espace, invite tes colocataires, et commencez à gérer votre idylle à plusieurs ! Organisez vos courses, vos dépenses, vos agendas, etc.",
+        action: "Créer mon espace",
+      },
+      createSpace: {
+        title: "Créer mon espace",
+        caption: "Ton espace est le lieu de toutes les actions concernant ta colocation. Il est le coeur même de l'application.",
+        form: {
+          fields: {
+            name: "Nom d'affichage",
+          },
+          action: "Confirmer",
+        },
+      },
+    },
+    members: {
+      navigationLabel: "Membres",
     },
   },
 };
