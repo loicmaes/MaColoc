@@ -131,6 +131,10 @@ export default {
     },
   },
   // app
+  notifications: {
+    noStatement: "Tu n'as pas de nouvelles notifications.",
+    readAll: "Tout marquer comme lu",
+  },
   overview: {
     navigationLabel: "Vue d'ensemble",
   },

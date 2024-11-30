@@ -131,6 +131,10 @@ export default {
     },
   },
   // app
+  notifications: {
+    noStatement: "You don't have new notifications.",
+    readAll: "Mark all as read",
+  },
   overview: {
     navigationLabel: "Overview",
   },
