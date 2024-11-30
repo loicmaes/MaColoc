@@ -321,6 +321,7 @@ export default {
           },
         },
         action: "Create my space",
+        actionLoading: "Creating your space...",
       },
     },
     members: {

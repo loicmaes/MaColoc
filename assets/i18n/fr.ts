@@ -331,6 +331,7 @@ export default {
           },
         },
         action: "Créer mon espace",
+        actionLoading: "Création de ton espace...",
       },
     },
     members: {
