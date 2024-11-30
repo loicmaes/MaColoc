@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Plus } from "@iconoir/vue";
-import CreateFlatSharingSpace from "~/components/composed/flatsharing/CreateFlatSharingSpace.vue";
 
 const { t } = useI18n();
 const user = useUser();
