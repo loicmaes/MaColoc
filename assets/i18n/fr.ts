@@ -302,6 +302,36 @@ export default {
       tabLabel: "Création de mon espace",
       title: "Créer ton espace",
       description: "Gérer ta colocation permet de vous éviter un certain nombre de conflit dans le futur. Anticiper les dépenses, une convention de colocation rédigée par les colocataires afin de convenir de la manière de vous organiser dans le ménage. Prends-soin de le configurer au petits oignons.",
+      form: {
+        name: {
+          label: "Nom d'affichage",
+          placeholder: "The Boys",
+        },
+        address: {
+          label: "Adresse du bien",
+          street: {
+            label: "Rue",
+            placeholder: "8 rue des Paquerettes",
+          },
+          additional: {
+            label: "Complément d'addresse",
+            placeholder: "3ème étage",
+          },
+          zipCode: {
+            label: "Code Postal",
+            placeholder: "71000",
+          },
+          city: {
+            label: "Ville",
+            placeholder: "Paris",
+          },
+          country: {
+            label: "Pays",
+            placeholder: "France",
+          },
+        },
+        action: "Créer mon espace",
+      },
     },
     members: {
       navigationLabel: "Membres",

@@ -292,6 +292,36 @@ export default {
       tabLabel: "Creating my space",
       title: "Create your space",
       description: "Managing your flatshare helps you avoid a number of conflicts in the future. Plan expenses, draft a flatshare agreement with your flatmates to agree on how to organize household tasks. Take care to configure it meticulously.",
+      form: {
+        name: {
+          label: "Display name",
+          placeholder: "The Boys",
+        },
+        address: {
+          label: "Property address",
+          street: {
+            label: "Street",
+            placeholder: "8 rue des Paquerettes",
+          },
+          additional: {
+            label: "Address complement",
+            placeholder: "3rd floor",
+          },
+          zipCode: {
+            label: "Postcode",
+            placeholder: "71000",
+          },
+          city: {
+            label: "City",
+            placeholder: "Paris",
+          },
+          country: {
+            label: "Country",
+            placeholder: "France",
+          },
+        },
+        action: "Create my space",
+      },
     },
     members: {
       navigationLabel: "Members",
