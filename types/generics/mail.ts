@@ -15,3 +15,7 @@ export interface IMailAttachement {
   path: string;
   contentType: string;
 }
+
+export interface IMailConfig {
+  notify?: boolean;
+}

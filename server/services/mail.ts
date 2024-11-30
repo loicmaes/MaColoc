@@ -1,5 +1,6 @@
 import { useMailer } from "#mailer";
-import type { IMailBody } from "~/types/generics/mail";
+import type { IMailBody, IMailConfig } from "~/types/generics/mail";
+import { registerNotification } from "~/server/services/notification";
 
 const transporter = () => {
   const config = useRuntimeConfig();
@@ -15,8 +16,14 @@ const transporter = () => {
   });
 };
 
-export async function send(body: IMailBody) {
+export async function send(body: IMailBody, options?: IMailConfig) {
   const config = useRuntimeConfig();
+
+  if (options?.notify) await registerNotification({
+    type: "email",
+    subject: body.subject ?? body.template.subject ?? "Sujet",
+    template: body.template.text,
+  });
 
   return useMailer().sendMail({
     transporter: transporter(),
