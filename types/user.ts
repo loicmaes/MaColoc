@@ -1,5 +1,6 @@
 import type { TGender, TSubscriptionPlan } from "~/types/generics/enums";
 import type { IIncludedRentalProfile } from "~/types/rentalProfile";
+import type { INotification } from "~/types/notification";
 
 export interface IInternalUser {
   uid: string;
@@ -13,6 +14,7 @@ export interface IInternalUser {
   data?: IIncludedUserInfo;
   preferences?: IIncludedUserPreferences;
   rentalProfile?: IIncludedRentalProfile;
+  notifications?: INotification[];
 }
 export type IUser = Omit<IInternalUser, "password">;
 
