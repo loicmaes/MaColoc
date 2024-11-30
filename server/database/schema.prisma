@@ -75,6 +75,35 @@ enum Language {
   algerian
 }
 
+enum NotificationType {
+  email
+  push
+  both
+}
+
+// NOTIFICATIONS
+model Notification {
+  id        Int              @id @default(autoincrement())
+  userUid   String?
+  type      NotificationType
+  // email
+  template  String?
+  subject   String?
+  data      String?
+  // push
+  title     String?
+  caption   String?
+  link      String?
+  thumbnail String?
+
+  emittedAt DateTime  @default(now())
+  readAt    DateTime?
+
+  user User? @relation(fields: [userUid], references: [uid], onDelete: SetNull)
+
+  @@map("notifications")
+}
+
 // MODELS
 model User {
   uid              String           @id @default(uuid())
@@ -90,6 +119,7 @@ model User {
   verificationCodes VerificationCode[]
   authSessions      AuthSession[]
   rentalProfile     RentalProfile?
+  notifications     Notification[]
 
   @@map("users")
 }

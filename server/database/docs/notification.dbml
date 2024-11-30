@@ -1,0 +1,25 @@
+Enum NotificationType {
+  email
+  push
+  both
+}
+
+Table Notification {
+  id int pk
+  userUid string [not null]
+  type NotificationType [not null]
+  // email
+  template string
+  subject string
+  data string
+  // push
+  title string
+  caption string
+  link string
+  thumbnail string
+
+  emittedAt datetime [not null]
+  readAt datetime
+}
+
+Ref: Notification.userUid < User.uid
