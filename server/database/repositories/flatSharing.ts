@@ -1,6 +1,13 @@
-import type { ICreateFlatSharing, IFlatSharing } from "~/types/flatSharing";
+import type {
+  ICreateFlatSharing,
+  ICreateFlatSharingInvitation,
+  IFlatSharing,
+  IFlatSharingInvitation,
+} from "~/types/flatSharing";
 import prisma from "~/server/database";
 import { NotFoundError } from "~/types/generics/errors";
+
+const invitationDuration = 1000 * 7 * 24 * 60 * 60;
 
 export async function create(userUid: string, payload: ICreateFlatSharing): Promise<IFlatSharing> {
   const flatSharing = await prisma.flatSharing.create({
@@ -39,6 +46,14 @@ export async function create(userUid: string, payload: ICreateFlatSharing): Prom
     }),
   } as IFlatSharing;
 }
+export async function createInvite(payload: ICreateFlatSharingInvitation): Promise<IFlatSharingInvitation> {
+  return await prisma.flatSharingInvitation.create({
+    data: {
+      ...payload,
+      expiresAt: new Date(Date.now() + invitationDuration),
+    },
+  }) as IFlatSharingInvitation;
+}
 
 export async function get(uid: string): Promise<IFlatSharing> {
   const flatSharing = await prisma.flatSharing.findFirst({
@@ -74,4 +89,15 @@ export async function get(uid: string): Promise<IFlatSharing> {
       return _member;
     }),
   } as IFlatSharing;
+}
+
+export async function isIn(memberUid: string, uid: string): Promise<boolean> {
+  return !!await prisma.flatSharingMember.findUnique({
+    where: {
+      userUid_flatSharingUid: {
+        userUid: memberUid,
+        flatSharingUid: uid,
+      },
+    },
+  });
 }

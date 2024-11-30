@@ -375,7 +375,10 @@ export default {
             loading: "Envoie de l'invitation...",
           },
         },
-        toast: {},
+        toast: {
+          title: "Félicitation 🎉",
+          description: "\"{email}\" a été invité à rejoindre !",
+        },
       },
       table: {
         firstName: "Prénom",

@@ -19,8 +19,7 @@ const { handleSubmit } = useForm({
 const onSubmit = handleSubmit(async ({ email }) => {
   loading.value = true;
 
-  alert(`Mail sent to: ${email}`);
-  // todo: send invitation
+  await sendJoinRequest(t, email);
   emailRef.value = "";
 
   loading.value = false;
