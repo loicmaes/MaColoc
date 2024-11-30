@@ -30,6 +30,10 @@ export interface IFlatSharingMember {
 
 export interface ICreateFlatSharing {
   name: string;
+  addressId: number;
+}
+export interface ICreateRichFlatSharing {
+  name: string;
   address: ICreatePostalAddress;
 }
 export interface ICreateFlatSharingInvitation {
