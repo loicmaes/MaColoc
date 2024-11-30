@@ -32,6 +32,8 @@ export interface ICompleteNotification extends INotification {
   readAt?: Date;
 }
 
+export type IFrontNotification = IPushNotification | ICompleteNotification;
+
 export type ICreateEmailNotification = Omit<Omit<Omit<IEmailNotification, "emittedAt">, "id">, "userUid">;
 export type ICreatePushNotification = Omit<Omit<Omit<IPushNotification, "emittedAt">, "id">, "userUid">;
 export type ICreateCompleteNotification = Omit<Omit<Omit<ICompleteNotification, "emittedAt">, "id">, "userUid">;
