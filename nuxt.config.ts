@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     "@nuxtjs/google-fonts",
     "nuxt-mailer",
     "nuxt-scheduler",
+    "@nuxt/image",
   ],
   devtools: { enabled: true },
   colorMode: {
