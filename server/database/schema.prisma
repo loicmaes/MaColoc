@@ -221,7 +221,7 @@ model PostalAddress {
 }
 
 model FlatSharing {
-  uid       String   @id
+  uid       String   @id @default(uuid())
   name      String
   addressId Int
   createdAt DateTime @default(now())
