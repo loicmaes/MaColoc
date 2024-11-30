@@ -7,7 +7,8 @@ import UserNotifications from "~/components/layouts/user/notifications/UserNotif
 
 const { t } = useI18n();
 
-const cpTabs = computed((): NavigationCategory[] => filterTabs(tabs));
+const user = useUser();
+const cpTabs = computed((): NavigationCategory[] => user.value ? filterTabs(tabs(user.value)) : []);
 </script>
 
 <template>

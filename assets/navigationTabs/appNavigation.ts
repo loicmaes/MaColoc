@@ -1,7 +1,8 @@
 import { User, Group, Community } from "@iconoir/vue";
 import type { NavigationCategory } from "~/types/generics/frontSpecific";
+import type { IUser } from "~/types/user";
 
-const tabs: NavigationCategory[] = [
+const tabs = (user: IUser): NavigationCategory[] => ([
   {
     children: [
       {
@@ -12,11 +13,19 @@ const tabs: NavigationCategory[] = [
   },
   {
     label: "social",
+    prefix: "rentalProfile",
     children: [
       {
         icon: User,
+        key: "rentalProfile.create",
+        path: "new",
+        renderCondition: !user.rentalProfile,
+      },
+      {
+        icon: User,
         key: "rentalProfile",
-        path: "rentalProfile",
+        path: "",
+        renderCondition: !!user.rentalProfile,
       },
     ],
   },
@@ -26,8 +35,15 @@ const tabs: NavigationCategory[] = [
     children: [
       {
         icon: Group,
+        key: "flatSharing.new",
+        path: "new",
+        renderCondition: true,
+      },
+      {
+        icon: Group,
         key: "flatSharing.home",
         path: "",
+        renderCondition: false,
       },
       {
         icon: Community,
@@ -37,5 +53,5 @@ const tabs: NavigationCategory[] = [
       },
     ],
   },
-];
+]);
 export default tabs;
