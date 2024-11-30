@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { Plus } from "@iconoir/vue";
-
 const { t } = useI18n();
 await useAuth(t, true);
 
